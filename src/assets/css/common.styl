@@ -1,2 +1,80 @@
-.GreenH
-  color #f00 !important
+:global
+  *, *::before, *::after
+    list-style none
+    margin 0
+    padding 0
+    text-decoration none
+    box-sizing auto
+  a
+    color inherit
+    &:active
+    color #ff0000
+    &:visited
+      color inherit
+    &:hover
+      color inherit
+  body
+    min-width 1300px
+    overflow-x hidden
+    background #EBECEC
+    background-color #EBECEC
+
+  .bg-b
+    background #342e2c
+
+  .bg-gray
+    background #B7B9BE
+
+  .bg-fff
+    background #fff
+
+  .c-b
+    color #342e2c
+
+  .c-fff
+    color #fff
+
+  .c-reg
+    color #45403f
+
+  .c-gray
+    color #676767
+
+  .c-pale
+    color #b7b9be
+
+  .c-yellow
+    color #ffbf13
+
+  .center
+    margin auto
+
+  .w-1300
+    width 1300px
+
+  .abs
+    position absolute
+    &.abs-center
+      left 0
+      right 0
+      top 0
+      bottom 0
+      margin auto
+
+  .flex
+    display flex
+    &.space-between
+      justify-content space-between
+    &.space-around
+      justify-content space-around
+
+  .inline-block
+    display inline-block
+    vertical-align top
+  .ov-hidden
+    overflow hidden
+
+  .mt-20
+    margin-top 20px
+
+
