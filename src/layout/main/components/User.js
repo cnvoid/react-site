@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { clickTopNav } from '@/store/actions/menu.act'
 import {Dropdown} from 'element-react'
+import {Link} from 'react-router-dom'
 class Topnav extends React.Component {
   constructor(props) {
     super(props)
@@ -14,9 +15,9 @@ class Topnav extends React.Component {
     return (
       <Dropdown className="dropdown" menu={(
         <Dropdown.Menu>
-          <Dropdown.Item>个人信息</Dropdown.Item>
-          <Dropdown.Item>修改手机</Dropdown.Item>
-          <Dropdown.Item>退出登录</Dropdown.Item>
+          <Dropdown.Item><Link to="/setting/user/myInfo">个人信息</Link></Dropdown.Item>
+          <Dropdown.Item><Link to="/setting/user/modify-tel">修改手机</Link></Dropdown.Item>
+          <Dropdown.Item><Link to="">退出登录</Link></Dropdown.Item>
         </Dropdown.Menu>
       )}>
         <span className="el-dropdown-link c-fff">

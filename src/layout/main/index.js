@@ -4,16 +4,20 @@ import Logo from './components/Logo'
 import Topnav from './components/Topnav'
 import Sidenav from './components/Sidenav'
 import Crumbs from './components/Crumbs'
+import WaterMark from '@/components/Watermark'
 import User from './components/User'
 import { Router, Switch, Route } from 'react-router';
 import { Provider } from 'react-redux'
 import store from './../../store/index'
 import routeConfig from '@/route.js'
 
-let createBrowserHistory = require("history").createHashHistory
-const history = createBrowserHistory();
+let createHashHistory = require("history").createHashHistory
+const history = createHashHistory();
 
 class Main extends React.Component {
+  constructor(props){
+    super(props)
+  }
 
   componentDidMount() {
     console.log(style)
@@ -22,8 +26,9 @@ class Main extends React.Component {
   render() {
     console.log('this.store', store)
     return (
-      <Provider store={store}>
+      // <Provider store={store}>
         <div className={style.Layout}>
+          <WaterMark></WaterMark>
           <div className="head bg-b">
             <div className="w-1300 center flex space-between">
 
@@ -47,7 +52,7 @@ class Main extends React.Component {
                 <Crumbs />
               </div>
               <div className="content bg-fff">
-                <div>
+                <div >
                   <Router history={history}>
                     <Switch>
                       {
@@ -63,7 +68,7 @@ class Main extends React.Component {
           </div>
 
         </div>
-      </Provider>
+      // </Provider>
     );
   }
 

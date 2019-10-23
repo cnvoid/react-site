@@ -16,13 +16,17 @@ class Topnav extends React.Component {
     return (
       <Breadcrumb separator="\">
         
-        <Breadcrumb.Item>
+        {/* <Breadcrumb.Item>
         <Link to="/">首页</Link>
         </Breadcrumb.Item>
-        
+         */}
         {
           crumbs.map((item, index) => {
-            return (<Breadcrumb.Item key={index}><Link to={item.to || '/'}>{item.name}</Link></Breadcrumb.Item>)
+            return (<Breadcrumb.Item key={index}>
+
+              <Link onClick={this.props.clickCrumbs.bind(this, index, item)} to={item.to}>{item.name}</Link>
+              
+              </Breadcrumb.Item>)
           })
         }
       </Breadcrumb>
@@ -38,10 +42,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    clickCrumbs(data) {
-      // alert(123)
-      // 如果不懂这里的逻辑可查看前面对redux-thunk的介绍
-      dispatch(clickCrumbs(data))
+    clickCrumbs(index, item) {
+      if(item.to){
+        dispatch(clickCrumbs(index))
+      }
+      
     }
   }
 }

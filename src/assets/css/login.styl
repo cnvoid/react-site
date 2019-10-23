@@ -1,0 +1,92 @@
+:local(.Layout)
+  position fixed
+  height 100%
+  width 100%
+  overflow auto
+  :global
+    .bg-blur
+      // filter blur(15px)
+      height 100%
+      width 100%
+      min-height 820px
+      background url('./../img/login/bg.png') no-repeat 
+      background-size cover
+      .rq-logo
+        width 162px
+        height 54px
+        margin auto
+        margin-bottom 120px
+        background url(https://www.ruqimobility.com/img/logo_white.f982a897.png) no-repeat
+        background-size contain
+      .rq-text
+        text-align center
+        margin-bottom 40px
+        color #fff
+        width 500px
+        height 40px
+        font-size:12px;
+        font-family 'PingFangSC-Regular,PingFang SC'
+        font-weight 400
+        color rgba(179,179,179,1)
+        line-height 17px
+
+    .loginbox
+      filter blur(0) !important
+      width 466px
+      height 400px
+      background rgba(52,46,44,0.59)
+      // border 1px solid rgba(241,241,241,1)
+      z-index 6
+      .logo
+        width 113px
+        height 40px
+        top -80px
+        left 0
+        right 0
+        margin auto
+        background url(./../img/login/qy.png)
+      .form-area
+        width 320px
+        margin 60px auto
+        .el-form-item__error
+          pointer-events none
+
+    .title
+      width 60px
+      text-align left
+      line-height 40px
+      color #fff
+      border-bottom 4px solid #FFBF13
+      font-size 20px
+      overflow visible
+      div
+        width 300px
+     .btn-msg
+       top 2px
+       right 20px
+       color #F7B200
+       &:hover
+         color #F7B290
+
+    .submit
+      width 100%
+      // background rgba(52,46,44,1)
+      // color #ffffff
+      // border none
+
+
+    .footer
+      width 100%
+      bottom 0
+      z-index 6
+      height 100px
+      background url(./../img/login/wave-static.png)
+      background-size cover
+      .wave
+        width 100%
+        bottom 0
+        height 100px
+        background  url(./../img/login/wave.png)
+        background-size cover
+
+

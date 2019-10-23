@@ -51,7 +51,7 @@ export default combineReducers({
     crumbs: (state = crumbs, action)=>{
       switch (action.type) {
         case 'CLICK_CRUMBS':
-          return action.data
+          return state.slice(0, action.data + 1)
         case 'SET_TOP_CRUMBS':
           console.log('ac',action.data)
           let item = action.data
@@ -67,6 +67,12 @@ export default combineReducers({
           state = state.concat(action.data)
           console.log(state)
         return state.slice()
+        case 'SET_LAST_CRUMBS':
+          state.push(action.data)
+          return state.slice()
+        case 'POP_LAST_CRUMBS':
+            state.pop()
+            return state.slice()
         default:
           return state
       }

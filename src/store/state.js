@@ -53,6 +53,7 @@ export let navMenu = [
   {
     name: '系统设置',
     permitionName: 'setting',
+    enName:'setting',
     sub: [{
       name: '基础设置',
       sub: [

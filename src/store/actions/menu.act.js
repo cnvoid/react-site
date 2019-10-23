@@ -23,3 +23,4 @@ export function clickCrumbs (data) {
     dispatch({ type: 'CLICK_CRUMBS', data: data })
   }
 }
+

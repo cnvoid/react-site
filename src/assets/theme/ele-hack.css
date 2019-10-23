@@ -22,3 +22,74 @@
   color: #48576a;
   cursor: text;
 }
+
+.el-select{
+  display: block;
+}
+
+.el-select-dropdown__item.selected,.el-select-dropdown__item.selected.hover{
+  color: #342E2C;
+  background-color: #FFBF13;
+}
+
+.el-*{
+  color: #342E2C !important;
+}
+
+.el-button,.el-button:hover{
+  color: #342e2c
+}
+
+.el-table{
+  overflow: visible !important;
+}
+
+.el-table, .el-table__body-wrapper {
+  overflow-y: visible !important;
+  overflow-x: scroll;
+}
+.el-table__fixed-body-wrapper{
+  overflow-y: visible;
+}
+
+.el-table__fixed, .el-table__fixed-right{
+  box-shadow: none;
+  border-left: 1px solid #eee;
+  /* overflow-x: scroll; */
+}
+
+.el-table .cell {
+  line-height: auto;
+  position: relative;
+}
+
+.el-table .cell, .el-table th div{
+  overflow: visible;
+}
+
+.el-dropdown-menu{
+  will-change: unset !important;
+  z-index:9999;
+}
+
+.el-table .el-dropdown-menu__item{
+  padding:0;
+}
+.el-table .el-dropdown-menu__item .text-btn{
+  width: 100%;
+  line-height: 18px;
+}
+
+.el-form--label-top .el-form-item__label{
+  line-height: 20px;
+  padding: 0 0 5px 0;
+}
+
+.el-table__fixed-right{
+  right: 0 !important;
+  bottom: 8px !important;
+}
+
+/* .el-popover{
+  top: 0 !important;
+} */

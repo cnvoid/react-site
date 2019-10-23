@@ -5,44 +5,19 @@ class Search extends React.Component {
     super(props)
     this.state = {
       form: {
-        a: '1233'
-      }
+      },
+      isShowExpand: props.list.length > 3,
+      isExpanded: false,
+      list: (props.list || []).slice(0, 3)
     }
-    this.list = [
-      {
-        name: 'roleName',
-        label: '角色名称',
-        dftValue: '沙雕一号',
-        type: 'input',
-        prop: {}
-      },
-      {
-        name: 'roleStatus',
-        label: '角色状态',
-        type: 'select',
-        opts: [{
-          value: '选项1',
-          label: '黄金糕'
-        }, {
-          value: '选项4',
-          label: '龙须面'
-        }, {
-          value: '选项5',
-          label: '北京烤鸭'
-        }]
-      },
-      {
-        name: 'dateTime',
-        label: '选择时间段',
-        type: 'dateTimeRange'
-      },
-    ]
+    this.list = props.list
+
     console.log('>>father props:', props)
   }
 
   propToState() {
     let form = {}
-    this.list.map((item) => {
+    this.state.list.map((item) => {
       form[item.name] = item.dftValue || ''
     })
     this.setState({
@@ -50,14 +25,8 @@ class Search extends React.Component {
     });
   }
 
-  componentDidMount() {
-
-    // this.refs.current.focus(); // 操作子组件
-
-  }
-
   getFormItem(itemJson) {
-    console.log('>>>',itemJson)
+    console.log('>>>', itemJson)
     let typeMap = {
       'input': <Input value={this.state.form[itemJson.name]} onChange={this.onChange.bind(this, itemJson.name)} placeholder={itemJson.placeholder || itemJson.label}></Input>,
       'select': <Select value={this.state.form[itemJson.name]} onChange={this.onChange.bind(this, itemJson.name)} placeholder={itemJson.placeholder || itemJson.label}>
@@ -68,10 +37,11 @@ class Search extends React.Component {
         }
       </Select>,
       'datetimerange': <DateRangePicker
-      value={this.state.form[itemJson.name]} placeholder={itemJson.placeholder || itemJson.label}
-      isShowTime={true}
-      onChange={this.onChange.bind(this, itemJson.name)}
-    />
+        value={this.state.form[itemJson.name]} placeholder={itemJson.placeholder || itemJson.label}
+        isShowTime={true}
+        format={'yyyy-MM-dd hh:mm:ss'}
+        onChange={this.onChange.bind(this, itemJson.name)}
+      />
     }
     return typeMap[(itemJson.type + '').toLowerCase()]
 
@@ -92,14 +62,22 @@ class Search extends React.Component {
     });
   }
 
+  clickExpand() {
+    this.setState({
+      isExpanded: !this.state.isExpanded,
+      list: this.state.isExpanded ? this.list.slice(0, 3) : this.list.slice()
+    });
+
+  }
+
   render() {
-    let cols = this.list.map((item, i) => {
+    let cols = this.state.list.map((item, i) => {
       return (
-        <Layout.Col span={[4,6,7,7][i%4]}>
+        <Layout.Col span={[7, 6, 7][(i + 1) % 3]}>
           <Form.Item>
             {
-          this.getFormItem(item)
-          }
+              this.getFormItem(item)
+            }
           </Form.Item>
         </Layout.Col>
       )
@@ -107,27 +85,29 @@ class Search extends React.Component {
 
     let rows = []
 
-    for(let i = 0; i < Math.ceil(this.list.length/3); i++){
+    for (let i = 0; i < Math.ceil(this.state.list.length / 3); i++) {
       rows[i] = cols.slice(i * 3, i * 3 + 3)
-      rows[i].push(i==0? <Layout.Col span="4">
-      <Form.Item>
-        <Button type="primary" onClick={() => { this.props.onSubmit(this.state.form) }}>查询</Button>
-        <Button onClick={this.handleReset.bind(this)}>重置</Button>
-      </Form.Item>
-    </Layout.Col> :'')
+      rows[i].push(i == 0 ? <Layout.Col span="4">
+        <Form.Item>
+          <Button type="primary" onClick={() => { this.props.onSubmit(this.state.form) }}>查询</Button>
+          <Button onClick={this.handleReset.bind(this)}>重置</Button>
+        </Form.Item>
+      </Layout.Col> : '')
 
-    rows[i] =  <Layout.Row gutter="20">
-      {rows[i] }
-    </Layout.Row>
+      rows[i] = <Layout.Row gutter="20">
+        {rows[i]}
+      </Layout.Row>
     }
 
-    console.log('rows',rows)
     return (
       <div className="search" >
         <Form model={this.state.form} className="demo-ruleForm">
           {rows}
-
         </Form>
+        {this.state.isShowExpand ? <div className="search-line relative">
+          <div className="text bg-fff pointer c-blue" onClick={this.clickExpand.bind(this)}>{this.state.isExpanded ? '收起更多项' : '展开更多项'}</div>
+        </div> : ''}
+
       </div>
 
     )
